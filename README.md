@@ -2,17 +2,19 @@
 
 # todo
 
+nodejs todo test
 
 
 ## Usage
 
-
+no usage
 
 ## Developing
 
-
+nodejs jquery boostrap requirejs angularjs
 
 ### Tools
+Created with Sublime
 
 Created with [Nodeclipse](https://github.com/Nodeclipse/nodeclipse-1)
  ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
