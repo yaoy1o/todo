@@ -1,0 +1,28 @@
+
+
+
+<div class="box">
+
+  <div class="box todos">
+    <h2 class="box"><%= title%>列表</h2>
+    <ol class="list-group">
+      <% for (var i = 0, len = todos.length; i < len; i++) {
+        var todo = todos[i];
+        
+      %>
+        <li  class="list-group-item">
+          <%= formatAreaDes(todo.parent,todo.name) %>&nbsp;&nbsp; (<%= todo.value%>)&nbsp;&nbsp; 
+          <div class="btn-group">
+                <a href="/area/editView/<%- todo._id%>" type="button" class="btn btn-primary btn-xs">修改</a>
+                <a href="/area/delete/<%- todo._id%>" type="button" class="btn btn-primary btn-xs" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
+          </div>
+        </li>
+      <% } %>
+    </ol>
+  </div>
+
+   
+
+</div>
+
+

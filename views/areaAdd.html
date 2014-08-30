@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  
+  <div class="row">
+ 
+ 
+  <h2><span class="glyphicon glyphicon-edit"></span>修改<%= title%></h2>
+  
+  <form role="form" action="<%- action%>" method="post">
+
+      <% if(isEdit){
+      %>    
+       <div class="form-group sr-only">
+          <label >id:</label>
+          <input type="text" class="form-control" id="id" name="id" placeholder="Enter Name" value="<%= doc._id%>">
+        </div>
+      <%
+      }%>
+
+
+
+
+  <div class="form-group">
+    <label >name:</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="<%= nullToEmpty(doc.name)%>">
+  </div>
+   <div class="form-group">
+    <label >value:</label>
+    <input type="text" class="form-control" id="value" name="value" placeholder="Enter Value" value="<%= nullToEmpty(doc.value)%>">
+  </div>
+  
+   <div class="form-group">
+    <label >parent:</label>
+
+      <select name="parent" class="form-control input-sm">
+
+          <option value="">无</option>
+        <% for (var i=0 , len=areas.length; i < len; i++) { 
+          var area=areas[i];
+        %>
+
+        <%
+
+
+
+          var isSelected='';
+          if(isEdit){
+            if(doc.parent!=null && area._id.toString()==doc.parent._id.toString()){
+              console.log("area selected!!!!!!!!!!!!!!!!!!!!!");
+              isSelected="selected=true";
+            }
+          }
+          
+        
+        %>
+          <option value="<%= area._id%>" <%- isSelected%>>
+            <%=area.name%>
+          </option>
+          <% } %>
+      </select>
+
+  </div>
+  
+  <p>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="提交" />
+    </p>
+  </form>
+   </row>
+</div>
+

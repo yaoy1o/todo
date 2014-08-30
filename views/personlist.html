@@ -1,0 +1,178 @@
+<style type="text/css">
+	.table tbody tr td {
+		overflow:hidden;
+		max-width: 50px;
+		max-height: 50px;
+		white-space:nowrap;
+	}
+
+	 
+	 
+
+	#operateCol{
+		overflow: auto;
+		max-width: 100px;
+		max-height: 50px;
+		width: 100px;
+		white-space:nowrap;
+		vertical-align:middle;
+		text-align:center;
+	}
+
+	.table tbody tr td span{
+
+	}
+	
+</style>
+
+<div class="container-fluid">
+	<table class="table table-condensed table-hover table-bordered">
+		<thead >
+			<tr class="active">
+				<th>
+					id
+				</th>
+				<th>
+					姓名
+				</th>
+
+				<th>
+					年龄
+				</th>
+
+				<th>
+					区域
+				</th>
+
+				<th>
+					商店
+				</th>
+
+				
+				
+				<th>
+					来源
+				</th>
+				<th>
+					面积
+				</th>
+				<th>
+					需求
+				</th>
+				<th>
+					价格
+				</th>
+				<th>
+					户型
+				</th>
+				<th id="operateCol">
+					
+					操作
+					
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (var i=0 , len=todos.length; i < len; i++) { 
+				var todo=todos[i];
+			%>
+				<tr>
+					<td>
+						<span><%=todo._id%></span>
+					</td>
+					<td>
+						<span><%=todo.name %></span>
+					</td>
+					<td>
+						<span><%=todo.age %></span>
+					</td>
+					<td>
+						<span>
+
+							<% 
+								if(todo.area){
+									if(todo.parentArea){
+
+								 %>
+							<%= todo.parentArea.name +"-" +todo.area.name %>
+								<% }else{
+									%>
+									<%- todo.area.name%>
+									<%
+								}} %>
+					</td>
+
+					<td>
+						<span><% if(todo.stories!=undefined && todo.stories.length>0){ %>
+							<%=todo.stories[0].title %>
+								<% } %>
+					</td>
+
+					<td>
+						<span><%=todo.toName(todo.orgin)%></span>
+					</td>
+					<td>
+						<span><%=todo.toName(todo.mj)%></span>
+					</td>
+					<td>
+						<span><%=todo.toName(todo.request)%></span>
+					</td>
+					<td>
+						<span><%=todo.toName(todo.price)%></span>
+					</td>
+					<td>
+						<span><%=todo.toName(todo.huxing)%></span>
+					</td>
+					<td   id="operateCol">
+
+						
+						 	<div class="btn-group">
+								<a href="/person/editView/<%- todo._id%>" class="btn btn-primary btn-xs" role="button">
+									修改
+								</a>
+							 
+								<a href="/person/delete/<%- todo._id%>" class="btn btn-primary btn-xs" role="button"
+								onclick="return confirm('删除以后不能恢复的，确定？')">
+									删除
+								</a>
+							</div> 
+						
+
+					</td>
+				</tr>
+				<% } %>
+		</tbody>
+	</table>
+
+	 <div class="text-center">
+		<ul class="pagination">
+					 
+					<%if(pageindex==0){%>
+						<li class="disabled"><a href="#">&laquo;</a></li>
+					<%}
+					else{%>
+						<li ><a href="/person/listView/<%- pagesize%>/<%= Number(pageindex)-1%>">&laquo;</a></li>
+					<%}%>
+			  		
+			  		<%for(var i=0;i<pageCount;i++){
+			  			if(i==pageindex){%>
+			  			
+						<li class="active"><a href="#" ><%= i+1%></a></li>
+						
+			  		<%}else{%>
+			  			<li><a href="/person/listView/<%- pagesize%>/<%= i%>"><%= i+1%></a></li>
+			  			
+			  		<%}}%>
+			  
+			  		<%if(Number(pageindex)==pageCount-1){%>
+						<li class="disabled"><a href="#">&laquo;</a></li>
+					<%}
+					else{%>
+						<li><a href="/person/list/<%- pagesize%>/<%= Number(pageindex)+1%>">&raquo;</a></li>
+					<%}%>
+
+			  		
+			</ul>
+	 </div>
+	
+</div>

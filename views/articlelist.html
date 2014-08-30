@@ -1,0 +1,70 @@
+<style type="text/css">
+  .center {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ 
+</style> 
+<div style="height:300px;background-color:yellow;line-height:300px;text-align:right;">
+  <div  style="background-color:red;width:200px;height:100px;display:inline-block;">
+    
+  </div>
+</div>
+
+
+<div class="center" style="background-color:red;">
+ <div style="height:200px;width:200px;line-height:200px;text-align:right;">
+  <div style="">dffdfdfdfdfdf</div>
+ </div>
+</div>
+
+<div class="panel panel-info">
+
+  <div class="panel-heading">
+
+    <h4 class="text-success text-center"><span class="glyphicon glyphicon-list"></span><%= title%>列表</h4>
+  </div>
+  
+   
+       <table class="table table-condensed table-hover">
+
+         <% for (var i = 0, len = docs.length; i < len; i++) {
+      var doc = docs[i];
+
+      %>
+            <tr>
+              <td>
+
+                  <ul class="list-inline">
+                      <li>
+                          <img src="/images/stickup.png" alt="..." class="img-thumbnail img-responsive">
+                      </li>
+                      <li>
+                          <h4> <span class="glyphicon glyphicon-ok-sign"></span>标题:<%= doc.title%></h4>
+                      </li>
+                  </ul>
+
+                   
+              </td>
+              <td valign="middle"  style="vertical-align:middle;">
+                   <div class="btn-group">
+
+                       <a  class="btn btn-default btn-md"  type="button" href="/<%= preUrl%>/infoView/<%- doc._id%>"><span class="glyphicon glyphicon-tag"></span>查看</a>&nbsp;
+                       <a class="btn btn-default btn-md"  type="button" href="/<%= preUrl%>/editView/<%- doc._id%>"><span class="glyphicon glyphicon-edit"></span>修改</a>&nbsp;
+                       <a class="btn btn-default btn-md"  type="button" href="/<%= preUrl%>/delete/<%- doc._id%>" onclick="return confirm('删除以后不能恢复的，确定？')"><span class="glyphicon glyphicon-remove"></span>删除</a>
+                  </div>
+
+              </td>
+            </tr>
+              <% } %>
+          </table>
+ 
+ 
+</div>
+
+
+
+
+

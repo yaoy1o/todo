@@ -1,0 +1,11 @@
+   <p >Nothing here {{'yet' + '!'}}</p>
+        <br/>
+        query is:{{query}}
+        <br/>
+        Search: <input ng-model="query">
+        <ul>
+          <li ng-repeat="phone in phones| filter:query">
+            {{phone.name}}
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>  

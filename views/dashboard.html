@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/../../favicon.ico">
+		<title>
+			<%
+				var websiteName='Dashboard Template for Bootstrap';
+				
+				if(webSiteConfig){
+					websiteName=webSiteConfig.websiteName;
+				}
+
+			%>
+			<%- websiteName%>
+		</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="/styles/dashboard.css" rel="stylesheet">
+		<%-defineContent('mycss')%>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target=".navbar-collapse">
+						<span class="sr-only">
+							Toggle navigation
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<%- websiteName%>
+					</a>
+
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#">
+								Dashboard
+							</a>
+						</li>
+						<%if(username){
+							%>
+								<li >
+									<a href="#">
+										帐号 ：<%- username%>
+									</a>
+								</li>
+
+								<li >
+									<a href="/logout" onclick="return confirm('确定要注销吗？')">
+										注销
+									</a>
+								</li>
+
+							<%
+						}
+						else{
+							%>
+								<li >
+									<a href="/loginView">
+										登录
+									</a>
+								</li>
+							<%
+						}
+						%> 
+					
+
+						<li>
+							<a href="#">
+								Settings
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Profile
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Help
+							</a>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							Overview
+						</a>
+						<a class="list-group-item" href="/uploadTest">
+							uploadTest
+							<span class="badge">
+								14
+							</span>
+						</a>
+						<a class="list-group-item" href="/angularjs/test">
+							angularjsTest
+						</a>
+						<a class="list-group-item" href="/area/parentAreas">
+							json test
+						</a>
+						<a class="list-group-item" href="/loginView">
+							login test
+						</a>
+						  
+						
+					</div>
+
+
+
+
+						<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>用户管理
+						</a> 
+						
+						<a class="list-group-item" href="/user/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加用户
+						</a>
+						 
+						<a class="list-group-item" href="/user/listView">
+							<span class="glyphicon glyphicon-list"></span>用户列表
+						</a>
+						
+						
+						
+						
+					</div>
+
+
+						<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>任务管理
+						</a> 
+						
+						<a class="list-group-item" href="/todo/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加任务
+						</a>
+						 
+						<a class="list-group-item" href="/todo/listView">
+							<span class="glyphicon glyphicon-list"></span>任务列表
+						</a>
+						
+						
+						
+						
+					</div>
+
+
+						<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>文章管理
+						</a> 
+						
+						<a class="list-group-item" href="/article/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加文章
+						</a>
+						
+						<a class="list-group-item" href="/article/listView">
+							<span class="glyphicon glyphicon-list"></span>文章列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+					
+							<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>私客管理
+						</a> 
+
+						<a class="list-group-item" href="/person">
+							<span class="glyphicon glyphicon-plus"></span>私客测试
+						</a>
+						
+						<a class="list-group-item" href="/person/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加私客
+						</a>
+						
+						<a class="list-group-item" href="/person/listView">
+							<span class="glyphicon glyphicon-list"></span>私客列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+					
+						<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>需求管理
+						</a> 
+						
+						<a class="list-group-item" href="/request/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加需求
+						</a>
+						
+						<a class="list-group-item" href="/request/listView">
+							<span class="glyphicon glyphicon-list"></span>需求列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+					
+						<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>区域管理
+						</a> 
+						
+						<a class="list-group-item" href="/area/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加区域
+						</a>
+						
+						<a class="list-group-item" href="/area/listView">
+							<span class="glyphicon glyphicon-list"></span>区域列表
+						</a>
+						
+						
+						
+						
+					</div>
+
+
+
+					
+					
+					<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>价格管理
+						</a> 
+						
+						<a class="list-group-item" href="/price/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加价格
+						</a>
+						
+						<a class="list-group-item" href="/price/listView">
+							<span class="glyphicon glyphicon-list"></span>价格列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+					<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>面积管理
+						</a> 
+						
+						<a class="list-group-item" href="/mj/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加面积
+						</a>
+						
+						<a class="list-group-item" href="/mj/listView">
+							<span class="glyphicon glyphicon-list"></span>面积列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+					
+					<div class="list-group nav-sidebar">
+						<a class="list-group-item active">
+							<span class="glyphicon glyphicon-user"></span>来源管理
+						</a> 
+						
+						<a class="list-group-item" href="/orgin/addView">
+							<span class="glyphicon glyphicon-plus"></span>添加来源
+						</a>
+						
+						<a class="list-group-item" href="/orgin/listView">
+							<span class="glyphicon glyphicon-list"></span>来源列表
+						</a>
+						
+						
+						
+						
+					</div>
+					
+
+
+
+					<ul class="list-group list-group-test" >
+						<li class="list-group-item">
+							<a href="">
+								Nav item
+							</a>
+						</li>
+						<li class="list-group-item">
+							<a href="">
+								Nav item again
+							</a>
+						</li>
+						<li class="list-group-item">
+							<a href="">
+								One more nav
+							</a>
+						</li>
+						 
+					</ul>
+
+					<hr/>
+
+					<ul class="nav nav-sidebar">
+						<li>
+							<a href="">
+								Nav item again
+							</a>
+						</li>
+						<li>
+							<a href="">
+								One more nav
+							</a>
+						</li>
+						<li>
+							<a href="">
+								Another nav item
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<h1 class="page-header">
+						Dashboard
+					</h1>
+					<%- body %>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript==================================================-
+		->
+		<!-- Placed at the end of the document so the pages load faster -->
+
+		<!--<script  data-main="/js/main.js"  src="/bower_components/requirejs/require.js" defer async="true" ></script> -->
+
+		<script    src="/bower_components/requirejs/require.js" ></script>
+
+		<script type="text/javascript">
+			require(['/js/config.js'],function(){
+
+			    <%- defineContent('myscript')%>
+			   
+			});
+ 
+		
+		</script>
+
+		
+		
+	</body>
+
+</html>

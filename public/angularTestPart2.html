@@ -1,0 +1,14 @@
+ <div >
+ 		  <p>
+ 		  	parentAreas is:{{parentAreas}}
+ 		  </p>
+          <h4>selectedParentAreaValue is:{{selectedParentAreaValue}}</h4>
+
+           <select ng-model="selectedParentAreaValue">
+                <option  value="{{parentArea._id}}" ng-repeat="parentArea in parentAreas"  ng-selected="parentArea._id==selectedParentAreaValue" >{{parentArea.name}}</option>
+          </select>
+
+          <select>
+                <option  value="{{childArea._id}}" ng-repeat="childArea in childAreas" >{{childArea.name}}</option>
+          </select>
+    </div>

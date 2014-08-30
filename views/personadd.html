@@ -1,0 +1,173 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+
+		<%- title%>
+
+	</div>
+	<div class="panel-body"  ng-controller="personaddController">
+
+
+	
+	<form action="/person/createOrUpdate" method="post" id="post_new" role="form"  name='myForm' novalidate>
+		<%if(doc){
+			%>
+				<div class="form-group sr-only" >
+							<label>
+								id:
+							</label>
+							<input type="text" name="id" class="form-control" id="id"
+							placeholder="Enter name" value="<%= doc.id||''%>">
+						</div>
+
+			<%
+		}%>
+		
+
+		<div class="form-group" ng-class="{'has-error':myForm.personName.$error.required && myForm.personName.$dirty}">
+			<label class="control-label">
+				姓名：
+			</label>
+			<input type="text" name="personName" class="form-control" ng-model='personName'
+			placeholder="Enter name" value="<%= doc.name||''%>" required ensureunique="person/isExist">
+			<p class="help-block" 
+		        ng-show="myForm.personName.$error.required && myForm.personName.$dirty">
+		        Your name is required.
+		    </p>
+
+		    <p class="help-block" 
+		        ng-show="myForm.personName.$dirty && myForm.personName.$error.nounique">
+		        Your name is not unique.{{myForm.personName.$error}}
+		    </p>
+		</div>
+		<div class="form-group" ng-class="{'has-error':myForm.personAge.$dirty && myForm.personAge.$invalid}">
+			<label class="control-label">
+				年龄：
+			</label>
+			<input type="number" name="personAge" class="form-control"  ng-model="personAge"
+			placeholder="Enter name" value="<%= doc.age||''%>" required >
+			<p class="help-block" 
+		        ng-show="myForm.personAge.$error.required && myForm.personAge.$dirty && !myForm.personAge.$error.number">
+		        Your age is required.
+		    </p>
+
+		    <p class="help-block" 
+		        ng-show="myForm.personAge.$error.number && myForm.personAge.$dirty">
+		        Your age need a number.
+		    </p>
+		</div>
+		 
+		<div class="form-group">
+			<label>
+				故事名称：
+			</label>
+			<input type="text" name="storyTitle" class="form-control" id="exampleInputEmail1"
+			placeholder="Enter name" value="<%= doc.stories && doc.stories[0].name ||''%>">
+		</div>
+		<div class="form-group">
+			<label>
+				orgin选项：
+			</label>
+			<select name="orgin" class="form-control input-sm">
+				<% for (var i=0 , len=orgins.length; i < len; i++) { 
+					var orgin=orgins[i];
+				%>
+					<option value="<%= orgin._id%>" <%= doc.orgin && orgin._id.toString()==doc.orgin._id.toString()?'selected=true':''%> >
+						<%=orgin.name%>
+					</option>
+					<% } %>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>
+				huxing选项：
+			</label>
+			<select name="huxing" class="form-control input-sm">
+				<% for (var i=0 , len=huxings.length; i < len; i++) { var huxing=huxings[i];
+				%>
+					<option value="<%= huxing._id%>"  <%= doc.huxing && huxing._id.toString()==doc.huxing._id.toString()?'selected=true':''%> >
+						<%=huxing.name%>
+					</option>
+					<% } %>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>
+				mj选项：
+			</label>
+			<select name="mj" class="form-control input-sm">
+				<% for (var i=0 , len=mjs.length; i < len; i++) { var mj=mjs[i]; %>
+					<option value="<%= mj._id%>" <%= doc.mj && mj._id.toString()==doc.mj._id.toString()?'selected=true':''%> >
+						<%=mj.name%>
+					</option>
+					<% } %>
+			</select>
+		</div>
+		<div class="alert alert-warning">
+		<div class="form-group">
+			<label>
+				父区域选项：
+			</label>
+			<select name="parentArea" ng-model='selectedParentAreaValue' class="form-control input-sm">
+				<%
+					var selectStr='';
+					if(doc.parentArea){
+						selectStr='ng-selected="parentArea._id=='+doc.parentArea._id+'"';
+					}
+
+				%>
+
+				<option ng-repeat="parentArea in parentAreas" value="{{parentArea._id}}" <%- selectStr%>>
+						{{parentArea.name}}
+					</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>
+				子区域选项：
+			</label>
+			<select name="childArea" class="form-control input-sm" >
+					<option ng-repeat="childArea in childAreas" value="{{childArea._id}}" <%= doc.childArea?'ng-selected="childArea._id=='+doc.childArea._id+'"':''%>">
+						{{childArea.name}}
+					</option>
+
+			</select>
+		</div>
+		</div>
+		<div class="form-group">
+			<label>
+				price选项：
+			</label>
+			<select name="price" class="form-control input-sm">
+				<% for (var i=0 , len=prices.length; i < len; i++) { var price=prices[i];
+				%>
+					<option value="<%= price._id%>"  <%= doc.price && price._id.toString()==doc.price._id.toString()?'selected=true':''%> >
+						<%=price.name%>
+					</option>
+					<% } %>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>
+				request选项：
+			</label>
+			<select name="request" class="form-control input-sm">
+				<% for (var i=0 , len=requests.length; i < len; i++) { 
+					var request=requests[i]; %>
+					<option value="<%= request._id%>" <%= doc.request && request._id.toString()==doc.request._id.toString()?'selected=true':''%>>
+						<%=request.name%>
+					</option>
+					<% } %>
+			</select>
+		</div>
+		<input type="submit" class="submit btn btn-primary btn-lg" value="添加"
+		  ng-disabled="myForm.$invalid"
+		/>
+	</form>
+	</div>
+
+</div>
+
+<%- contentFor('myscript') %>
+require(['angular','personadd']);
+

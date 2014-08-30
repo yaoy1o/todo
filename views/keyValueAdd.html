@@ -1,0 +1,68 @@
+<div class="panel panel-info">
+ 	<div class="panel-heading">
+ 	  <span class="glyphicon glyphicon-edit"></span>&nbsp;修改<%= title%>
+ 	</div>
+ 	
+ 	<div class="panel-body">
+ 		
+ 	 
+				  <form  class="form-horizontal" role="form" action="<%- action%>" method="post">
+
+
+				   <%
+
+
+				   		var idItem='';
+				   		var nameItem='';
+				   		var valueItem='';
+ 
+				   		if(doc._id){
+					   		idItem=doc._id;
+				   			nameItem=doc.name;
+				   			valueItem=doc.value;
+					   	}
+				   		 
+
+				   %>
+
+
+
+				   <div class="col-sm-11 col-sm-offset-1 hidden">
+				    	<input type="text" class="form-control" id="id" name="id" placeholder="Enter id" value="<%= idItem%>">
+				  </div>
+
+				  <div class="form-group" >
+				    <label for="name" class="col-sm-1 control-label">name</label>
+				    <div class="col-sm-11">
+				    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="<%= nameItem%>">
+				    <span class="help-block"><strong>tip: </strong> input your name in this blank!</span>
+				    </div>
+				  </div>
+				   <div class="form-group">
+				      <label  for="value" class="col-sm-1 control-label">value</label>
+				      <div class="col-xs-11">
+				    <input type="text" class="form-control" id="value" name="value" placeholder="Enter Value" value="<%= valueItem%>">
+				    <span class="help-block"><strong>tip: </strong> please input some value in this blank! thank you !</span>
+				    </div>
+				    
+				  </div>
+				  
+				   <div class="form-group">
+				    <div class="col-sm-offset-1 col-sm-11">
+				      <input type="submit"  class="btn btn-primary"    value="提交" />
+				    </div>
+				  </div>
+			   
+			  </form>
+ 	</div>
+ 
+ </div>
+
+
+
+
+ 
+
+    
+
+

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" ng-app="ControlState">
+<head>
+    <meta charset="UTF-8">
+    <title>ControlState</title>
+    <style type="text/css">
+        .ng-cloak {
+            display: none;
+        }
+        .css-form input.ng-invalid.ng-dirty {
+            background-color: #fa787e;
+        }
+        .css-form input.ng-valid.ng-dirty {
+            background-color: #78fa89;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="MyCtrl" class="ng-cloak">
+    <form novalidate class="css-form" name="formName">
+        名字: <input ng-model="user.name" name="userName" type="text" required><br/>
+        <div ng-show="formName.userName.$dirty&&formName.userName.$invalid">
+            <span>请填写名字</span>
+        </div>
+        Email: <input ng-model="user.email" name="userEmail" type="email" required><br/>
+        <div ng-show="formName.userEmail.$dirty && formName.userEmail.$invalid">提示:
+            <span ng-show="formName.userEmail.$error.required">请填写Email</span>
+            <span ng-show="formName.userEmail.$error.email">这不是一个有效的Email</span>
+        </div>
+        性别: <input value="男" ng-model="user.gender" type="radio">男
+        <input value="女" ng-model="user.gender" type="radio">女
+        <br/>
+        <input type="checkbox" ng-model="user.agree" name="userAgree" required/>我同意：
+        <input type="text" ng-show="user.agree" ng-model="user.agreeSign" required/>
+        <br/>
+        <div ng-show="!formName.userAgree || !user.agreeSign">请同意并签名~</div>
+        <button ng-click="reset()" ng-disabled="isUnchanged(user)">RESET</button>
+        <button ng-click="update(user)" ng-disabled="formName.$invalid || isUnchanged(user)">SAVE</button>
+    </form>
+    <pre>form = {{user | json}}</pre>
+    <pre>saved = {{saved | json}}</pre>
+</div>
+<script src="bower_components/angularjs/angular.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var app = angular.module("ControlState", []);
+    app.controller("MyCtrl", function ($scope,$window) {
+        $scope.saved = {};
+        $scope.update = function(user) {
+            $scope.saved = angular.copy(user);
+        };
+
+        $scope.reset = function() {
+            $scope.user = angular.copy($scope.saved);
+        };
+
+        $scope.isUnchanged = function(user) {
+            return angular.equals(user, $scope.saved);
+        };
+
+        $scope.reset();
+        //不合法的值将不会进入user
+    });
+</script>
+</body>
+</html>
